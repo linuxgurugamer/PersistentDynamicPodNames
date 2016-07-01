@@ -19,7 +19,8 @@ Available Templates
 This is accessed using the toolbar button (PDPN) while in the Space Center scene. This window will list all available templates, and allow you to specify which templates are active (active in this case means that it will appear in the template lists in the editors).
 There are buttons which will allow you to enable or disable all of the templates.
 
-[availableTemplates]
+[http://spacetux.net/images/PDPN/toolbar.png]
+[http://spacetux.net/images/PDPN/availableTemplates.png]
 
 --
 
@@ -31,14 +32,14 @@ There will be a PDPN button in the editor.  It has two functions.  Hovering the 
 	Set Priority to reverse stage
 
 Clicking the button will bring up the Primary Ship Name Template Selection dialog
-[pdpnMenu]
+[http://spacetux.net/images/PDPN/editorMenu.png]
 
 --
 
 Primary Ship Name Template Selection
 Accessed by clicking the PDPN button in the editor, this window presents a list of all active templates.  The selected template will be assigned to the vessel currently under construction.  After selection and closing the window, the template name will be put in the vessel name field at the top of the screen, with asterisks on either side (astericks are used to indicate it's a template).  If there is  nothing in the description field, a copy of the template will be put there.
 
-[primaryShipNameTemplateSelection]
+[http://spacetux.net/images/PDPN/primaryShipNameTemplSel.png]
 
 --
 
@@ -47,14 +48,16 @@ This dialog is accessed using the first menu item.  It displays a list of all th
 At the right of each line will be an up and down arrow, this is used to move the pods up and down the priority list.
 Double-clicking on an entry field  (either the name or the ship type) will bring up a pair of arrows (right/left) on each side of the field.  You can use those arrows to scroll through the available entries for that field;  name field will scroll through all active templates, ship type field will scroll through all the ship types.
 
-[commandPods]
+[http://spacetux.net/images/PDPN/commandPods1.png]
+[http://spacetux.net/images/PDPN/commandPods2.png]
 
 --
 
 Enter Persistent Pod Name
 This dialog is accessed by right-clicking on a command pod and using the right-click menu item "Persistent pod name".  You can enter a sihp name, use the right/left arrows on either side of the entry field to scroll through the active templates, and select the vessel type by clicking the appropriate button.  This option is available in the flight scene as well.
 
-[enterPersistentPodName]
+[http://spacetux.net/images/PDPN/rightclick.png]
+[http://spacetux.net/images/PDPN/enterPersistentPodName.png]
 
 --
 
