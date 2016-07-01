@@ -98,6 +98,7 @@
     <None Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdditionalCreditsAndLicenses.txt" />
     <Content Include="License.txt" />
     <Content Include="SampleTemplates.txt" />
   </ItemGroup>

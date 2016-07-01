@@ -2,6 +2,12 @@
 	"NAME":"PersistentDynamicPodNames",
 	"URL":"http://ksp-avc.cybutek.net/version.php?id=308",
 	"DOWNLOAD":"https://github.com/linuxgurugamer/PersistentDynamicPodNames",
+	"GITHUB":
+    {
+        "USERNAME"			: "linuxgurugamer",
+        "REPOSITORY"		: "PersistentDynamicPodNames",
+        "ALLOW_PRE_RELEASE"	: false
+    },
 	"VERSION":
 	{
 		"MAJOR":0,
