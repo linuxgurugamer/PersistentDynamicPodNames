@@ -53,6 +53,7 @@ copy /Y "PersistentDynamicPodNames.version" "%HOMEDIR%\install\GameData\Persiste
 copy /Y "License.txt" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
 copy /Y "README.md" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
 copy /Y MiniAVC.dll  "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
+copy /Y ModuleManager.2.6.25.dll  "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
 
 
 
