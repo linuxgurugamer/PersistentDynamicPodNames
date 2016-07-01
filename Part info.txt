@@ -1,0 +1,33 @@
+For <Part>:
+
+stages are 0 based ascending, comand pod starts in stage 0.
+
+inverseStage = the stage the part appears in the actual stage GUI(ie, final stage after all adjustments).
+
+inStageIndex = the index value of a part within a stage. Zero based.(ie if part is the third part in the fifth stage: inverseStage = 4 & inStageIndex = 2)
+
+originalStage = which stage the part was added to originally by the game. Zero based.
+
+defaultInverseStage = appears the same as above, unclear difference.
+
+manualStageOffset = what it says on the tin.
+
+I haven\'t checked these values in flight but as far as in the editor
+
+inverseStage = Usually is the stage that it appears in in the gui, however if you move all parts out of a stage and remove that empty stage this is no longer accurate. The game still thinks that empty stage exists even though it doesn\'t show up on the GUI. This may be a bug and is an issue i\'m still trying to solve for my engineer plugin.
+
+defaultInverseStage = The stage where the game puts a part when you add it to a ship while in the editor at least.
+
+originalStage = seams to always be 0 in the editor possibly just not used there.
+
+inStageIndex = I\'ve seen negative values for this not sure what to make of it
+
+there are some more stage related values than what you listed they don\'t always make cense to me in the editor and may only have meaning in the flight scene
+
+childStageOffset
+
+stageOffset
+
+stageAfter
+
+stageBefore
