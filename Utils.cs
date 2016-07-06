@@ -250,21 +250,24 @@ namespace PDPN
 
 		public static string formatName (PartModule pm2, string templateName, bool fillSelections = false)
 		{
-			Log.Info ("enter formatName:  " + templateName);
-			if (templateName == "")
+			Log.Info ("enter formatName:  [" + templateName + "]");
+			if (templateName == null || templateName == "")
 				return "";
-
-			if (templateName.Length < 3 || templateName [0] != '*' || templateName [templateName.Length - 1] != '*') {
+            Log.Info("formatName 0  length: " + templateName.Length.ToString());
+            if (templateName.Length < 3 || templateName [0] != '*' || templateName [templateName.Length - 1] != '*') {
 				return templateName;
 			}
+            Log.Info("formatName 1");
 			if (!fillSelections)
 				PDPN_SelectionWindow.InitSelectionWindow ();
+            Log.Info("formatName 2");
 
-			int[] times = ConvertUT (Planetarium.GetUniversalTime ());
+            int[] times = ConvertUT (Planetarium.GetUniversalTime ());
 
 			KeyValuePair<string, PDPN.Tuple<string, NameValueCollection, bool>> t = GetFormat (templateName);
+            Log.Info("formatName 3");
 
-			string newVesselName = "";
+            string newVesselName = templateName;
 			if (fillSelections || t.Key != "") {
 				string template;
 				if (fillSelections)

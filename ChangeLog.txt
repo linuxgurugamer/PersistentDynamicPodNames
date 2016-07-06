@@ -1,0 +1,5 @@
+﻿0.1.0
+		Initial release
+
+0.1.1
+		Fixed bug where not having any values in persistent pod name would segfault

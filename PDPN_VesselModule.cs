@@ -140,48 +140,55 @@ namespace PDPN
         {
             Log.Info("PDPNVesselModule.GetVesselName, id: " + vessel.id.ToString());
 
-            string returnString = "";
-
+            
             Log.Info("origVesselGuid: " + origVesselGuid.ToString());
             PersistentDynamicPodNames acn = Utils.getActiveCommandPodModule(vessel.parts);
+
+            if (acn == null)
+            {
+                return "unknown Vessel";
+            }
+            string returnString = acn.vessel.vesselName;
+            Log.Info("returnString: " + returnString);
 
             if (renamed && acn.used)
             {
                 Log.Info("vessel already renamed & active pod used");
-                Log.Info("returning vessel name  vessel.id: " + vessel.id.ToString() + "   vesselName: " + vessel.vesselName);
-                return vessel.vesselName;
+                if (acn.vessel.vesselName == "")
+                    acn.vessel.vesselName = acn.vessel.vesselType.ToString();
+                Log.Info("returning vessel name  vessel.id: " + vessel.id.ToString() + "   vesselName: " + acn.vessel.vesselName);
+                return acn.vessel.vesselName;
             }
             else
             {
-                // Following should never happen, but check for safety
-                if (acn == null)
-                {
-                    returnString = vessel.vesselName;
-                }
-                else
-                {
-                    Part p = Utils.getActiveCommandPodPart(vessel.parts);
+                Part p = Utils.getActiveCommandPodPart(vessel.parts);
 
-                    Log.Info("vessel.vesselName: " + vessel.vesselName);
-                   // Log.Info("partOrigVesselGuid: " + acn.partOrigVesselGuid.ToString());
-                    Log.Info("storedVesselName: " + acn.storedVesselName);
-                    Log.Info("vesselType: " + acn.vesselType.ToString());
-                    Log.Info("priority: " + acn.priority.ToString());
-                    Log.Info("needsManualInput: " + acn.needsManualInput.ToString());
-                    Log.Info("p.partName: " + p.name);
+                Log.Info("vessel.vesselName: " + vessel.vesselName);
+                Log.Info("acn.vessel.vesselName: " + acn.vessel.vesselName);
+                // Log.Info("partOrigVesselGuid: " + acn.partOrigVesselGuid.ToString());
+                Log.Info("storedVesselName: " + acn.storedVesselName);
+                Log.Info("vesselType: " + acn.vesselType.ToString());
+                Log.Info("priority: " + acn.priority.ToString());
+                Log.Info("needsManualInput: " + acn.needsManualInput.ToString());
+                Log.Info("p.partName: " + p.name);
+                if (acn.storedVesselName != "")
                     returnString = acn.storedVesselName;
-                    acn.used = true;
-                    renamed = true;
-                }
+                acn.used = true;
+                renamed = true;
+               
                 if (returnString == "")
                 {
                     Log.Info("No name specified in pod");
                     Log.Info("returning vessel name  vessel.id: " + vessel.id.ToString() + "   vesselName: " + vessel.vesselName);
-                    return vessel.vesselName;
+                    return acn.vessel.vesselName;
                 }
             }
 
+            if (returnString == "")
+                returnString = "debris";
+            Log.Info("Before formatName, returnString: " + returnString);
             returnString = Utils.formatName(acn, returnString);
+            Log.Info("After formatName, returnString: " + returnString);
             //
             // Check for a manual-input field
             //

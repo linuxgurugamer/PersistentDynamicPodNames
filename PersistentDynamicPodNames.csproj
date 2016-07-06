@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdditionalCreditsAndLicenses.txt" />
+    <Content Include="ChangeLog.txt" />
     <Content Include="License.txt" />
     <Content Include="SampleTemplates.txt" />
   </ItemGroup>

@@ -149,7 +149,9 @@ namespace PDPN
 						Log.Info ("needsManualInput: " + needsManualInput.ToString ());
 						Log.Info ("p.partName: " + this.name);
 
-						vessel.vesselName = PDPN_SelectionWindow.formatManualEntryName (Utils.getActiveCommandPodModule (vessel.parts), vessel.vesselName, false, true, originalStoredVesselName);
+                        string s = PDPN_SelectionWindow.formatManualEntryName(Utils.getActiveCommandPodModule(vessel.parts), vessel.vesselName, false, true, originalStoredVesselName);
+                        if (s != "")
+                            vessel.vesselName = s;
 						PDPN_SelectionWindow.flightReady = true;
 						PDPN_SelectionWindow.physicsCnt = 0;
                         needsManualInput = false;
