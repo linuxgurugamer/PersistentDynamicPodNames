@@ -146,7 +146,8 @@ namespace PDPN
 
             if (acn == null)
             {
-                return "unknown Vessel";
+                return vessel.vesselName;
+//                return "unknown Vessel";
             }
             string returnString = acn.vessel.vesselName;
             Log.Info("returnString: " + returnString);

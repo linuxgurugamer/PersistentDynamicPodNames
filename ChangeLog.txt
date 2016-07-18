@@ -3,3 +3,6 @@
 
 0.1.1
 		Fixed bug where not having any values in persistent pod name would segfault
+
+0.1.2
+		Made behaviour when nothing specified like stock

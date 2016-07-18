@@ -35,8 +35,8 @@ mkdir %HOMEDIR%\install\GameData\PersistentDynamicPodNames\PluginData
 mkdir %HOMEDIR%\install\GameData\PersistentDynamicPodNames\Plugins
 
 
-del %HOMEDIR%\install\GameData\PersistentDynamicPodNames
-del %HOMEDIR%\install\GameData\PersistentDynamicPodNames\Textures
+del /y %HOMEDIR%\install\GameData\PersistentDynamicPodNames
+del /y %HOMEDIR%\install\GameData\PersistentDynamicPodNames\Textures
 
 
 copy /Y "%~dp0bin\Release\PersistentDynamicPodNames.dll" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames\Plugins"

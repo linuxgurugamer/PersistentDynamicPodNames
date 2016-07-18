@@ -1,2 +1,3 @@
 ﻿1.	Improve template selection screen
-
+2.  Fix behaviour when no template or name to mirror stock
+	a.  Initial ship name:  untitled space craft
