@@ -271,7 +271,7 @@ namespace PDPN
 			foreach (string s in v)
 				dest [cnt++] = s;
 
-            Part p = Utils.getActiveCommandPodPart(((PersistentDynamicPodNames)pm2).pdpnVesselModule.vessel.parts);
+            Part p = Utils.getActiveCommandPodPart(((PersistentDynamicPodNames)pm2).pdpnVesselModule.pdpnVessel.parts);
 
             StartSelection (p, "destination", dest);
 
@@ -353,7 +353,7 @@ namespace PDPN
 				foreach (string s in v)
 					dest [cnt++] = s;
 
-                Part p = Utils.getActiveCommandPodPart(((PersistentDynamicPodNames)pm2).pdpnVesselModule.vessel.parts);
+                Part p = Utils.getActiveCommandPodPart(((PersistentDynamicPodNames)pm2).pdpnVesselModule.pdpnVessel.parts);
                 StartSelection (p, id, dest);
 			}
 			Log.Info ("getCustom end");
@@ -464,15 +464,18 @@ namespace PDPN
             p.SetHighlightType(Part.HighlightType.AlwaysOn);
             p.SetHighlight(true, false);
             p.SetHighlightColor(c);
-            p.highlighter.ConstantOn(c);
-            p.highlighter.SeeThroughOn();
+            //p.highlighter.ConstantOn(c);
+            //p.highlighter.SeeThroughOn();
+            p.HighlightActive = true;
+            p.SetOpacity(0.5f);
         }
 
         public void StopHighlight(Part p)
         {
             Log.Info("StopHighlight");
             p.SetHighlightDefault();
-            p.highlighter.Off();
+            // p.highlighter.Off();
+            p.HighlightActive = false;
         }
 
 

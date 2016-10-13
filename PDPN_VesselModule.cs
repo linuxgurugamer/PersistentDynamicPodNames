@@ -21,7 +21,7 @@ namespace PDPN
     public class PDPN_VesselModule : VesselModule //, IVesselAutoRename
     {
 
-        public Vessel vessel;
+        public Vessel pdpnVessel;
 
         [KSPField(isPersistant = true, guiActive = false, guiActiveEditor = false, guiName = "origGuid")]
         public Guid origVesselGuid;
@@ -38,19 +38,21 @@ namespace PDPN
         public void Start()
         {
           Log.Info("PDPNVesselModule.Start");
-          //  Constants.pdpnVesselModule = this;
-            
-            vessel = GetComponent<Vessel>();
-            if (vessel == null || vessel.isEVA /* || !vessel.isCommandable */)
+            //  Constants.pdpnVesselModule = this;
+
+
+            //pdpnVessel = GetComponent<Vessel>();
+            pdpnVessel = vessel;
+            if (pdpnVessel == null || pdpnVessel.isEVA /* || !vessel.isCommandable */)
             {
-                vessel = null;
+                pdpnVessel = null;
                 //Destroy(this);
                 return;
             }
             
-            Log.Info("PDPNVesselModule.Start  vessel.id: " + vessel.id.ToString() + "   origVesselGuid: " + origVesselGuid.ToString());
-            vessel.vesselName = GetVesselName();
-            vessel.vesselType = GetVesselType();
+            Log.Info("PDPNVesselModule.Start  vessel.id: " + pdpnVessel.id.ToString() + "   origVesselGuid: " + origVesselGuid.ToString());
+            pdpnVessel.vesselName = GetVesselName();
+            pdpnVessel.vesselType = GetVesselType();
 
             //GameEvents.onStageSeparation.Add(CallbackOnStageSeperation);
             //GameEvents.OnFlightGlobalsReady.Add (CallbackOnFlightGlobalsReady);
@@ -104,13 +106,13 @@ namespace PDPN
         {
             Log.Info("CallbackOnVesselWasModified, guid: " + v.id.ToString() + "  vessel: " + v.vesselName);
             
-            if (v != vessel)
+            if (v != pdpnVessel)
             {
-                Log.Info("CallbackOnVesselWasModified v.id: " + v.id.ToString() + "   vessel.id: " + vessel.id.ToString());
+                Log.Info("CallbackOnVesselWasModified v.id: " + v.id.ToString() + "   vessel.id: " + pdpnVessel.id.ToString());
             }
            
-            vessel.vesselName = GetVesselName();
-            vessel.vesselType = GetVesselType();
+            pdpnVessel.vesselName = GetVesselName();
+            pdpnVessel.vesselType = GetVesselType();
         }
 
         //public void FixedUpdate()
@@ -118,7 +120,7 @@ namespace PDPN
         //	Log.Info ("PDPNVesselModule.Fixedupdate");
         //}
 
-        public override void OnAwake()
+        public new void OnAwake()
         {
             Log.Info("PDPNVesselModule.OnAwake");
             base.OnAwake();
@@ -128,8 +130,8 @@ namespace PDPN
                 return;
                 //throw new Exception("GameDatabase is not ready?");
             }
-            vessel = GetComponent<Vessel>();
-            Log.Info("PDPNVesselModule.OnAwake  vessel.id: " + vessel.id.ToString());
+            //vessel = GetComponent<Vessel>();
+            Log.Info("PDPNVesselModule.OnAwake  vessel.id: " + pdpnVessel.id.ToString());
         }
 
         
@@ -138,15 +140,15 @@ namespace PDPN
         //
         public string GetVesselName()
         {
-            Log.Info("PDPNVesselModule.GetVesselName, id: " + vessel.id.ToString());
+            Log.Info("PDPNVesselModule.GetVesselName, id: " + pdpnVessel.id.ToString());
 
             
             Log.Info("origVesselGuid: " + origVesselGuid.ToString());
-            PersistentDynamicPodNames acn = Utils.getActiveCommandPodModule(vessel.parts);
+            PersistentDynamicPodNames acn = Utils.getActiveCommandPodModule(pdpnVessel.parts);
 
             if (acn == null)
             {
-                return vessel.vesselName;
+                return pdpnVessel.vesselName;
 //                return "unknown Vessel";
             }
             string returnString = acn.vessel.vesselName;
@@ -157,14 +159,14 @@ namespace PDPN
                 Log.Info("vessel already renamed & active pod used");
                 if (acn.vessel.vesselName == "")
                     acn.vessel.vesselName = acn.vessel.vesselType.ToString();
-                Log.Info("returning vessel name  vessel.id: " + vessel.id.ToString() + "   vesselName: " + acn.vessel.vesselName);
+                Log.Info("returning vessel name  vessel.id: " + pdpnVessel.id.ToString() + "   vesselName: " + acn.vessel.vesselName);
                 return acn.vessel.vesselName;
             }
             else
             {
-                Part p = Utils.getActiveCommandPodPart(vessel.parts);
+                Part p = Utils.getActiveCommandPodPart(pdpnVessel.parts);
 
-                Log.Info("vessel.vesselName: " + vessel.vesselName);
+                Log.Info("vessel.vesselName: " + pdpnVessel.vesselName);
                 Log.Info("acn.vessel.vesselName: " + acn.vessel.vesselName);
                 // Log.Info("partOrigVesselGuid: " + acn.partOrigVesselGuid.ToString());
                 Log.Info("storedVesselName: " + acn.storedVesselName);
@@ -180,7 +182,7 @@ namespace PDPN
                 if (returnString == "")
                 {
                     Log.Info("No name specified in pod");
-                    Log.Info("returning vessel name  vessel.id: " + vessel.id.ToString() + "   vesselName: " + vessel.vesselName);
+                    Log.Info("returning vessel name  vessel.id: " + pdpnVessel.id.ToString() + "   vesselName: " + pdpnVessel.vesselName);
                     return acn.vessel.vesselName;
                 }
             }
@@ -205,7 +207,7 @@ namespace PDPN
             if (acn.needsManualInput)
                 acn.originalStoredVesselName = acn.storedVesselName;
             Log.Info("final acn.needsManualInput: " + acn.needsManualInput.ToString());
-            Log.Info("final returnString: " + returnString + "  vessel.id: " + vessel.id.ToString() + "\n");
+            Log.Info("final returnString: " + returnString + "  vessel.id: " + pdpnVessel.id.ToString() + "\n");
             return returnString;
         }
 
@@ -213,16 +215,16 @@ namespace PDPN
         {
             Log.Info("PDPNVesselModule.GetVesselType");
 
-            Log.Info("origVesselGuid: " + origVesselGuid.ToString() + "   this.vessel.id: " + this.vessel.id.ToString());
+            Log.Info("origVesselGuid: " + origVesselGuid.ToString() + "   this.vessel.id: " + this.pdpnVessel.id.ToString());
 
-            PersistentDynamicPodNames acn = Utils.getActiveCommandPodModule(vessel.parts);
+            PersistentDynamicPodNames acn = Utils.getActiveCommandPodModule(pdpnVessel.parts);
 
             if (acn == null)
-                return vessel.vesselType;
+                return pdpnVessel.vesselType;
 
-            Part p = Utils.getActiveCommandPodPart(vessel.parts);
+            Part p = Utils.getActiveCommandPodPart(pdpnVessel.parts);
             Log.Info("GetVesselType");
-            Log.Info("vessel.vesselName: " + vessel.vesselName);
+            Log.Info("vessel.vesselName: " + pdpnVessel.vesselName);
             Log.Info("storedVesselName: " + acn.storedVesselName);
             Log.Info("vesselType: " + acn.vesselType.ToString());
             Log.Info("priority: " + acn.priority.ToString());

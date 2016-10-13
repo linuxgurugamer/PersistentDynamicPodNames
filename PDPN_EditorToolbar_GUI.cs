@@ -114,12 +114,21 @@ namespace PDPN
 
 			return button;
 		}
-
+         
 		public static void RemoveAppLauncherButton(ApplicationLauncherButton button)
 		{
-			if (button)
-				ApplicationLauncher.Instance.RemoveModApplication (button);
+            if (button != null)
+            {
+                Log.Info("RemoveAppLauncherButton: " + button.ToString());
+                
+                ApplicationLauncher.Instance.RemoveModApplication(button);
+            }
+            else
+            {
+                Log.Info("RemoveAppLauncherButton: button is null");
+            }
 		}
+
 		bool _showMenu = false;
 		Rect _menuRect = new Rect ();
 		const float _menuWidth = 100.0f;
@@ -167,8 +176,9 @@ namespace PDPN
 				Log.Info("PersistentDynamicPodNames -- OnAppLauncherFalse called without a button?!?");
 				return;
 			}
-			Log.Info ("PersistentDynamicPodNames.OnAppLauncherFalse");
-			EditorLogic.fetch.Unlock("PersistentDynamicPodNamesLocked");
+			Log.Info ("PersistentDynamicPodNames.OnAppLauncherFalse 2");
+            if (EditorLogic.fetch != null)
+			    EditorLogic.fetch.Unlock("PersistentDynamicPodNamesLocked");
 			//_editorLocked = false;
 			activated = false;
 		}
@@ -593,8 +603,11 @@ namespace PDPN
 			p.SetHighlightType(Part.HighlightType.AlwaysOn);
 			p.SetHighlight(true, false);
 			p.SetHighlightColor(highlightC);
-			p.highlighter.ConstantOn(edgeHighlightColor);
-			p.highlighter.SeeThroughOn();
+            //p.highlighter.ConstantOn(edgeHighlightColor);
+            //p.highlighter.SeeThroughOn();
+            p.HighlightActive = true;
+            p.SetOpacity(0.5f
+                );
 			lastHighlightedPart = p;
 		}
 
@@ -607,7 +620,8 @@ namespace PDPN
 
             foreach (Part p in partList) {
                 p.SetHighlightDefault();
-                p.highlighter.Off();
+                // p.highlighter.Off();
+                p.HighlightActive = false;
 			}
 			lastHighlightedPart = null;
 		}
@@ -659,10 +673,9 @@ namespace PDPN
 		/*
          * Called when the game is leaving the scene (or exiting). Perform any clean up work here.
          */
-		private void OnDestroy ()
+		void OnDestroy ()
 		{
-			//Log.Info("ChampagneBottle [" + GetInstanceID().ToString("X")
-			//          + "][" + Time.time.ToString("0.0000") + "]: OnDestroy");
+            Log.Info("PDPN_EditorToolbar_GUI.OnDestory");
 			toggleToolbarButton (false);
 			if (toolbarButton != null)
 				toolbarButton.Destroy ();

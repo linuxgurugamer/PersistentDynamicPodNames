@@ -144,7 +144,7 @@ namespace PDPN
                 Log.Info("PersistentDynamicPodNames -- OnAppLauncherFalse called without a button?!?");
                 return;
             }
-            Log.Info("PersistentDynamicPodNames.OnAppLauncherFalse");
+            Log.Info("PersistentDynamicPodNames.OnAppLauncherFalse 1");
 
             activated = false;
         }
