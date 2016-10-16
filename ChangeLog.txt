@@ -6,3 +6,9 @@
 
 0.1.2
 		Made behaviour when nothing specified like stock
+
+0.1.4
+		updated for 1.2
+
+0.1.5
+		Fixed a couple of nullrefs

@@ -35,11 +35,11 @@ namespace PDPN
         /// <summary>
         /// Start - check to see if the part has any launch clamps.
         /// </summary>
-        public void Start()
+        public new void  Start()
         {
           Log.Info("PDPNVesselModule.Start");
             //  Constants.pdpnVesselModule = this;
-
+            base.Start();
 
             //pdpnVessel = GetComponent<Vessel>();
             pdpnVessel = vessel;
@@ -140,9 +140,10 @@ namespace PDPN
         //
         public string GetVesselName()
         {
+           
+            if (pdpnVessel == null || pdpnVessel.id == null)
+                return "";
             Log.Info("PDPNVesselModule.GetVesselName, id: " + pdpnVessel.id.ToString());
-
-            
             Log.Info("origVesselGuid: " + origVesselGuid.ToString());
             PersistentDynamicPodNames acn = Utils.getActiveCommandPodModule(pdpnVessel.parts);
 
@@ -214,7 +215,8 @@ namespace PDPN
         public VesselType GetVesselType()
         {
             Log.Info("PDPNVesselModule.GetVesselType");
-
+            if (this.pdpnVessel == null)
+                return VesselType.Unknown;
             Log.Info("origVesselGuid: " + origVesselGuid.ToString() + "   this.vessel.id: " + this.pdpnVessel.id.ToString());
 
             PersistentDynamicPodNames acn = Utils.getActiveCommandPodModule(pdpnVessel.parts);
