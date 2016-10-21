@@ -120,7 +120,7 @@ namespace PDPN
 
 		public  void FixedUpdate()
 		{
-            Log.Info("Fixedupdate");
+            
             if (vesselType == VesselType.Unknown)
             {
                 Part p = Utils.getModulePartParent(this);
