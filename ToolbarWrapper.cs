@@ -23,6 +23,9 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
+
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +73,7 @@ namespace PDPN {
 		/// </summary>
 		public static IToolbarManager Instance {
 			get {
+                return null;
 				if ((toolbarAvailable != false) && (instance_ == null)) {
 					Type type = ToolbarTypes.getType("Toolbar.ToolbarManager");
 					if (type != null) {
@@ -794,3 +798,4 @@ namespace PDPN {
 
 	#endregion
 }
+

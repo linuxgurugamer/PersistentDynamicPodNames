@@ -17,7 +17,9 @@ namespace PDPN
     public class PDPN_EditorToolbar_GUI : MonoBehaviour
     {
         public ApplicationLauncherButton _appLauncherButton = null;
+
         private IButton toolbarButton = null;
+
         bool activated = false;
 
         private void Awake()

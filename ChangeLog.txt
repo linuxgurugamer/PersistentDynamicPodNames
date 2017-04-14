@@ -19,3 +19,6 @@
 0.1.7
 		Added new vessel types Plane and Relay
 		Added AssemblyVersion.tt
+
+0.1.7.1
+		Disabled Blizzy Toolbar.  Needs work to provide the popup menus, etc

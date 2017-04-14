@@ -18,7 +18,10 @@ namespace PDPN
     public class PDPN_ConfigToolbar_GUI : MonoBehaviour
     {
         ApplicationLauncherButton _cfgAppLauncherButton = null;
+
         private static IButton toolbarButton = null;
+
+
         bool activated = false;
         private void Awake()
         {
