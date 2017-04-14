@@ -15,3 +15,7 @@
 
 0.1.6
 		Fixed a problem with ToolbarWrapper.cs
+
+0.1.7
+		Added new vessel types Plane and Relay
+		Added AssemblyVersion.tt

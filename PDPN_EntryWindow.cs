@@ -149,7 +149,7 @@ namespace PDPN
 			}
 		}
 
-		public static string[] vtypes = new string[] { "Probe", "Rover", "Lander", "Ship", "Station", "Base" };
+		public static string[] vtypes = new string[] { "Probe", "Rover", "Lander", "Ship", "Station", "Base", "Plane", "Relay" };
 		int vtype = 3;
 
         static int getVesselType(VesselType v)
@@ -172,27 +172,33 @@ namespace PDPN
             VesselType workingvesseltype = VesselType.Unknown;
 
 			switch (vtype) {
-			case 0:
-				workingvesseltype = VesselType.Probe;
-				break;
-			case 1:
-				workingvesseltype = VesselType.Rover;
-				break;
-			case 2:
-				workingvesseltype = VesselType.Lander;
-				break;
-			case 3:
-				workingvesseltype = VesselType.Ship;
-				break;
-			case 4:
-				workingvesseltype = VesselType.Station;
-				break;
-			case 5:
-				workingvesseltype = VesselType.Base;
-				break;
+			    case 0:
+				    workingvesseltype = VesselType.Probe;
+				    break;
+			    case 1:
+				    workingvesseltype = VesselType.Rover;
+				    break;
+			    case 2:
+				    workingvesseltype = VesselType.Lander;
+				    break;
+			    case 3:
+				    workingvesseltype = VesselType.Ship;
+				    break;
+			    case 4:
+				    workingvesseltype = VesselType.Station;
+				    break;
+			    case 5:
+				    workingvesseltype = VesselType.Base;
+				    break;
+                case 6:
+                    workingvesseltype = VesselType.Plane;
+                    break;
+                case 7:
+                    workingvesseltype = VesselType.Relay;
+                    break;
 
-			}
-			return workingvesseltype;
+            }
+            return workingvesseltype;
 		}
 
 		public void PersistentPodNameEntryWindow (int windowID)

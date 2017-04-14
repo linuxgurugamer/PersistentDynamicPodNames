@@ -62,6 +62,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyVersion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyVersion.tt</DependentUpon>
+    </Compile>
     <Compile Include="PDPN_ConfigToolbar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
@@ -80,20 +85,16 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="PDPN_Settings.cfg" />
-    <None Include="PersistentDynamicPodNames.version" />
-    <None Include="Notes.md" />
-    <None Include="PersistentDynamicPodNamesMM.cfg" />
-    <None Include="buildRelease.bat" />
-    <None Include="deploy.bat" />
     <None Include="PDPN_Default_Templates.cfg" />
-    <None Include="README.md" />
-    <None Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdditionalCreditsAndLicenses.txt" />
-    <Content Include="ChangeLog.txt" />
-    <Content Include="License.txt" />
-    <Content Include="SampleTemplates.txt" />
+    <Content Include="AssemblyVersion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>start /D D:\Users\jbb\github\PersistentDynamicPodNames /WAIT deploy.bat
@@ -101,5 +102,13 @@
 if $(ConfigurationName) == Release (
 start /D D:\Users\jbb\github\PersistentDynamicPodNames /WAIT buildRelease.bat
 )</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>set textTemplatingPath="%25CommonProgramFiles(x86)%25\Microsoft Shared\TextTemplating\$(VisualStudioVersion)\texttransform.exe"
+
+if %25textTemplatingPath%25=="\Microsoft Shared\TextTemplating\$(VisualStudioVersion)\texttransform.exe" set textTemplatingPath="%25CommonProgramFiles%25\Microsoft Shared\TextTemplating\$(VisualStudioVersion)\texttransform.exe"
+
+%25textTemplatingPath%25 "$(ProjectDir)AssemblyVersion.tt"
+</PreBuildEvent>
   </PropertyGroup>
 </Project>

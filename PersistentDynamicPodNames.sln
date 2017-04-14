@@ -1,7 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistentDynamicPodNames", "PersistentDynamicPodNames.csproj", "{AED92331-4FEF-4DF9-A3EF-4C155786301C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{722E9CF0-B06C-4EFA-8E18-4F8D072ACAB1}"
+	ProjectSection(SolutionItems) = preProject
+		AdditionalCreditsAndLicenses.txt = AdditionalCreditsAndLicenses.txt
+		buildRelease.bat = buildRelease.bat
+		ChangeLog.txt = ChangeLog.txt
+		deploy.bat = deploy.bat
+		License.txt = License.txt
+		Notes.md = Notes.md
+		PersistentDynamicPodNames.version = PersistentDynamicPodNames.version
+		PersistentDynamicPodNamesMM.cfg = PersistentDynamicPodNamesMM.cfg
+		README.md = README.md
+		SampleTemplates.txt = SampleTemplates.txt
+		TODO.txt = TODO.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +30,8 @@ Global
 		{AED92331-4FEF-4DF9-A3EF-4C155786301C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AED92331-4FEF-4DF9-A3EF-4C155786301C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AED92331-4FEF-4DF9-A3EF-4C155786301C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
