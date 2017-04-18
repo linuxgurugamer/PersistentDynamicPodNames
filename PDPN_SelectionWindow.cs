@@ -68,13 +68,17 @@ namespace PDPN
 		{
 			Log.Info ("GetFormat templateName: " + templateName);
 
-				
-			templateName = templateName.Substring (1, templateName.Length - 2);
-			foreach (KeyValuePair<string, PDPN.Tuple<string, NameValueCollection, bool>> t in Constants.config.templates) {
-				if (t.Value.Third && t.Key == templateName) {
-					return t;
-				}
-			}
+            if (templateName.Length >= 3)
+            {
+                templateName = templateName.Substring(1, templateName.Length - 2);
+                foreach (KeyValuePair<string, PDPN.Tuple<string, NameValueCollection, bool>> t in Constants.config.templates)
+                {
+                    if (t.Value.Third && t.Key == templateName)
+                    {
+                        return t;
+                    }
+                }
+            }
 			NameValueCollection pairs = new NameValueCollection ();
 			return new KeyValuePair<string, PDPN.Tuple<string, NameValueCollection, bool>> ("", new PDPN.Tuple<string, NameValueCollection, bool> (templateName, pairs, true));
 		}

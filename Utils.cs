@@ -211,13 +211,22 @@ namespace PDPN
 		public static KeyValuePair<string, PDPN.Tuple<string, NameValueCollection, bool>> GetFormat (string templateName)
 		{
 			Log.Info ("GetFormat templateName: " + templateName);
+            if (templateName.Length <= 3)
+            {
+                Log.Error("templateName too short: [" + templateName + "]");
 
-			templateName = templateName.Substring (1, templateName.Length - 2);
-			foreach (KeyValuePair<string, PDPN.Tuple<string, NameValueCollection, bool>> t in Constants.config.templates) {
-				if (t.Value.Third && t.Key == templateName) {
-					return t;
-				}
-			}
+            }
+            else
+            {
+                templateName = templateName.Substring(1, templateName.Length - 2);
+                foreach (KeyValuePair<string, PDPN.Tuple<string, NameValueCollection, bool>> t in Constants.config.templates)
+                {
+                    if (t.Value.Third && t.Key == templateName)
+                    {
+                        return t;
+                    }
+                }
+            }
 			NameValueCollection pairs = new NameValueCollection ();
 			return new KeyValuePair<string, PDPN.Tuple<string, NameValueCollection, bool>> ("", new PDPN.Tuple<string, NameValueCollection, bool> (templateName, pairs, true));
 		}
@@ -257,10 +266,8 @@ namespace PDPN
             if (templateName.Length < 3 || templateName [0] != '*' || templateName [templateName.Length - 1] != '*') {
 				return templateName;
 			}
-            Log.Info("formatName 1");
 			if (!fillSelections)
 				PDPN_SelectionWindow.InitSelectionWindow ();
-            Log.Info("formatName 2");
 
             int[] times = ConvertUT (Planetarium.GetUniversalTime ());
 

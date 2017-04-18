@@ -22,3 +22,6 @@
 
 0.1.7.1
 		Disabled Blizzy Toolbar.  Needs work to provide the popup menus, etc
+
+0.1.7.3
+		Added checks for nullrefs when no template specified
