@@ -1,0 +1,321 @@
+﻿// This is a sample template file.  
+
+//	You can, if you like, copy it over to the file PDPN_Templates.cfg
+
+//	names surrounded by [brackets] are replaced immediately.  
+//	names surrounded by <angle brackets> are replaced after launch & at staging
+//	names surrounded by (parentheses) are a user-inputed value, selected from values defined in cfg file
+//  names surrounded by #numberSigns# are a user-defined counter, which starts at 1
+
+//	The following example shows the syntax needed for defining a template.
+//	All templates need to be specified using the "templateName"
+//	Then, the template is defined using the normal config file syntax
+//	First line in the template is the template definitation, followed by any special values.
+//	So the following example defines a simple template called "exampleTemplate".
+//	The template is defined as:  KSP-<year>:#usm#-(destination)
+//	which is read as follows:
+//	the <year> is replaced by the year of the launch
+//	#usm# is a counter which increments by one for every launch
+//	(destination) will have the user select a destination, defined below as planets
+
+
+//	PersistentDynamicPodNames
+//	{
+//		templateName = exampleTemplate
+//		exampleTemplate
+//		{
+//			template = KSP-<year>:#usm#-(destination)
+//			destination
+//			{
+//				values = planets
+//			}
+//		}
+//	}
+
+
+//	// Special names:
+//	weightclass		Specifies a weight class the vessel is, based on total vessel mass.Requires a definition such as:
+//			weightclass
+//			{
+//				values = Light Intermediate Medium Heavy
+//				Light = 5
+//				Intermediate = 50
+//				Medium = 100
+//				Heavy = 250
+//			}
+
+//	enginetype		A string of all enginetypes.  Enginetype is obtained from the game, and an abbreviation is created. Only one of each type will be added
+//	fueltype		A string of all fuel types, ordered by engines/stages.
+//	vesseltype		The vesseltype as defined by KSP
+//	numstages
+//	curstagenum
+//	propulsion		The type of propulsion
+//	date
+//	day
+//	year2
+//	year3
+//	year4
+//	year
+	
+//	The following can only be used for a manual-inputted value
+//		destination		If nothing specified, will be all planets or moons.  
+//		planets			If nothing specified, then all planets
+//		moons			If nothing specified, then all moons
+
+
+
+PersistentDynamicPodNames
+{
+	templateName = test1
+
+	templateName = Apollo
+	templateName = Gemini
+	templateName = Mercury
+	templateName = STS
+
+	templateName = MunLander
+	templateName = MinmusLander
+	templateName = Instell
+	templateName = FRX
+	templateName = digitsClass
+	templateName = USM
+
+	USM
+	{
+		template = USP-<year>:<#usm>-(destination)
+		destination
+		{
+			values = planets
+		}
+	}
+
+	digitsClass
+	{
+		template = (purpose)[propulsion](OperationalRegime)
+		purpose
+		{
+			values = DisposableDrone ReusableDrone CrewTransfer Tanker Station Tug Cargo Carrier CompoundVehicle
+			DisposableDrone = 0 
+			ReusableDrone = 1 
+			CrewTransfer = 2 
+			Tanker = 3
+			Station = 4 
+			Tug = 5 
+			Cargo = 6 
+			Carrier = 7 
+			CompoundVehicle = 9 
+		}
+		# Propulsion
+		propulsion
+		{
+			values = Generic SolidBooster LiquidFuel Piston Turbine ScramJet Electric Nuclear MonoProp
+			Generic = G
+			SolidBooster = Srb
+			LiquidFuel = L
+			Piston = P
+			Turbine = T
+			ScramJet = SJ
+			Electric = E
+			Nuclear = N
+			MonoProp = M
+		}
+		OperationalRegime
+		{
+			values = Impactor SurfaceFixed NonAtmospheric Atmospheric Transatmospheric Interplanetary Interstellar
+			Impactor = 0
+			SurfaceFixed = 1
+			NonAtmospheric = 2
+			Atmospheric = 3
+			Transatmospheric = 4
+			Interplanetary = 5
+			Interstellar = 6
+		}
+	}
+
+	FRX
+	{
+		template = <year2>[fueltype][propulsion]
+
+		# fueltype is/are the type(s) of propellent(s) in the current stage
+		fueltype
+		{
+			values = LiquidFuel Oxidizer SolidFuel MonoPropellant XenonGas 
+			LiquidFuel = L
+			Oxidizer = O
+			SolidFuel = S
+			MonoPropellant = M
+			XenonGas = X
+		}
+		# Propulsion
+		propulsion
+		{
+			values = Generic SolidBooster LiquidFuel Piston Turbine ScramJet Electric Nuclear MonoProp
+			Generic = G
+			SolidBooster = Srb
+			LiquidFuel = L
+			Piston = P
+			Turbine = T
+			ScramJet = SJ
+			Electric = E
+			Nuclear = N
+			MonoProp = M
+		}
+	}
+
+	Instell
+	{
+		template = (prefix)-(VT)-#instell#
+		prefix
+		{
+			values = G X Y
+			G = Permanently Grounded 
+			X = Experimental
+			P = Prototype
+		}
+		VT
+		{
+			values = A B C E F G H I K L M O P Q R S T U V X Z
+			A = Attack
+			B = Bomber
+			C = Cargo/Carrier
+			E = Electronic
+			F = Fighter
+			G = Glider
+			H = Helicopter
+			I = Interceptor
+			K = Tanker
+			L = Laser-equipped
+			M = Multi-mission
+			O = Observation
+			P = Patrol
+			Q = Unmanned Vehicle
+			R = Reconnaissance
+			S = Spaceplane
+			T = Trainer
+			U = Utility
+			V = VTOL aircraft
+			X = Special Research
+			Z = Lighter-Than-Air
+
+		}
+	}
+
+	Mercury
+	{
+		template = Mercury #mercury#
+	}
+	Gemini
+	{
+		template = Gemini #gemini# (destination)
+
+	}
+	Apollo
+	{
+		template = Apollo #apollo# test
+	}
+	STS
+	{
+		template = STS #sts#
+	}
+
+	MunLander
+	{
+		template = Mun #munlander#
+	}
+
+	MinmusLander
+	{
+		template = Minmus #minmuslander#
+	}
+
+
+	test1
+	{
+		template = [enginetype]-[fueltype]-[numstages]-[vesseltype]-[weightclass]:<propulsion>-<curstagenum> <year>:<day>-#launchcnt# (destination) (custom1)
+		one = 1
+		two = 2
+		three = 3
+
+		# Weightclass, must be in order from lightest to heaviest.  Last one is the
+		# catchall, for anything which is none of the earlier ones
+		weightclass
+		{
+			values = Light Intermediate Medium Heavy
+			Light = 5
+			Intermediate = 50
+			Medium = 100
+			Heavy = 250
+		}
+		# fueltype is/are the type(s) of propellent(s) in the current stage
+		fueltype
+		{
+			values = LiquidFuel Oxidizer SolidFuel MonoPropellant XenonGas 
+			LiquidFuel = L
+			Oxidizer = O
+			SolidFuel = S
+			MonoPropellant = M
+			XenonGas = X
+		}
+
+		vesseltype
+		{
+			values = Cargo SpacePlane Aircraft DisposableDrone ReusableDrone CrewTransfer Tanker Station Tug CompoundVehicle Rover
+			Cargo = C 
+			SpacePlane = SP
+			Aircraft
+			DisposableDrone = DD
+			ReusableDrone = RD
+			CrewTransfer = CT
+			Tanker = T
+			Station = S
+			Tug = Tg
+			CompoundVehicle = CV
+			Rover = RV
+
+		}
+
+		# destination defaults to all planets
+		# If values are specified, then only those are shown
+		# special values:   planets moons all
+		destination
+		{
+			values = planets
+		#	values = Kerbin Mun Minmus Mono Eve Duna Dres Jool Eeloo AsteroidRedirectMission Solar Rescue
+		#	Kerbin =
+		#	Mun = Mu
+		#	Minmus = Mi
+		#	Mono = M
+		#	Eve = E
+		#	Duna = Du
+		#	Dres = D
+		#	Jool = J
+		#	Eeloo = E
+		#	AsteroidRedirectMission = ARM
+		#	Solar = K
+		#	Rescue = (destination)-R
+		}
+
+		# Propulsion
+		propulsion
+		{
+			values = Generic SolidBooster LiquidFuel Piston Turbine ScramJet Electric Nuclear MonoProp
+			Generic = G
+			SolidBooster = Srb
+			LiquidFuel = L
+			Piston = P
+			Turbine = T
+			ScramJet = SJ
+			Electric = E
+			Nuclear = N
+			MonoProp = M
+		}
+
+		custom1
+		{
+			values = one two three four five
+		}
+	}
+
+
+
+}

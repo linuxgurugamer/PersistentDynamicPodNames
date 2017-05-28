@@ -1,24 +1,12 @@
 ﻿
 rem @echo off
 
-set DEFHOMEDRIVE=d:
-set DEFHOMEDIR=%DEFHOMEDRIVE%%HOMEPATH%
-set HOMEDIR=
-set HOMEDRIVE=%CD:~0,2%
+cd
+pause
+
 
 set RELEASEDIR=d:\Users\jbb\release
 set ZIP="c:\Program Files\7-zip\7z.exe"
-echo Default homedir: %DEFHOMEDIR%
-
-if "%HOMEDIR%" == "" (
-set HOMEDIR=%DEFHOMEDIR%
-)
-echo %HOMEDIR%
-
-SET _test=%HOMEDIR:~1,1%
-if "%_test%" == ":" (
-set HOMEDRIVE=%HOMEDIR:~0,2%
-)
 
 d:
 cd D:\Users\jbb\github\PersistentDynamicPodNames
@@ -44,40 +32,31 @@ if "%build%" NEQ "0"  set VERSION=%VERSION%.%build%
 
 echo %VERSION%
 
-mkdir %HOMEDIR%\install\GameData\PersistentDynamicPodNames
-mkdir %HOMEDIR%\install\GameData\PersistentDynamicPodNames\Textures
-mkdir %HOMEDIR%\install\GameData\PersistentDynamicPodNames\PluginData
-mkdir %HOMEDIR%\install\GameData\PersistentDynamicPodNames\Plugins
+mkdir GameData\PersistentDynamicPodNames
+mkdir GameData\PersistentDynamicPodNames\Textures
+mkdir GameData\PersistentDynamicPodNames\PluginData
+mkdir GameData\PersistentDynamicPodNames\Plugins
 
 
-del /q %HOMEDIR%\install\GameData\PersistentDynamicPodNames\*
-del /q %HOMEDIR%\install\GameData\PersistentDynamicPodNames\Textures\*
+copy /Y "%~dp0Source\bin\Release\PersistentDynamicPodNames.dll" "GameData\PersistentDynamicPodNames\Plugins"
 
+copy /Y "PDPN_Default_Templates.cfg" "GameData\PersistentDynamicPodNames\PluginData"
+copy /Y "PDPN_Settings.cfg" "GameData\PersistentDynamicPodNames\PluginData"
+copy /Y "PersistentDynamicPodNamesMM.cfg" "GameData\PersistentDynamicPodNames"
+copy /Y "SampleTemplates.txt" "GameData\PersistentDynamicPodNames"
 
-copy /Y "%~dp0bin\Release\PersistentDynamicPodNames.dll" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames\Plugins"
+copy /Y Textures\* "GameData\PersistentDynamicPodNames\Textures"
 
-copy /Y "PDPN_Default_Templates.cfg" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames\PluginData"
-copy /Y "%~dp0PDPN_Settings.cfg" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames\PluginData"
-copy /Y "%~dp0PersistentDynamicPodNamesMM.cfg" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
-copy /Y "%~dp0SampleTemplates.txt" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
+copy /Y "PersistentDynamicPodNames.version" "GameData\PersistentDynamicPodNames"
 
-copy /Y Textures\* "%HOMEDIR%\install\GameData\PersistentDynamicPodNames\Textures"
+copy /Y "License.txt" "GameData\PersistentDynamicPodNames"
+copy /Y "README.md" "GameData\PersistentDynamicPodNames"
+copy /Y ..\MiniAVC.dll  "GameData\PersistentDynamicPodNames"
+copy /Y ..\ModuleManager.2.8.0.dll  "GameData"
+copy /Y AdditionalCreditsAndLicenses.txt  "GameData\PersistentDynamicPodNames"
 
-copy /Y "PersistentDynamicPodNames.version" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
-
-copy /Y "License.txt" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
-copy /Y "README.md" "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
-copy /Y MiniAVC.dll  "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
-copy /Y ModuleManager.2.6.25.dll  "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
-copy /Y AdditionalCreditsAndLicenses.txt  "%HOMEDIR%\install\GameData\PersistentDynamicPodNames"
-
-
-
-
-
-%HOMEDRIVE%
-cd %HOMEDIR%\install
 
 set FILE="%RELEASEDIR%\PersistentDynamicPodNames-%VERSION%.zip"
 IF EXIST %FILE% del /F %FILE%
 %ZIP% a -tzip %FILE% Gamedata\PersistentDynamicPodNames
+pause

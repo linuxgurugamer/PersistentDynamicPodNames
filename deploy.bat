@@ -1,6 +1,6 @@
 ﻿Rem unusable line
 
-set H=R:\KSP_1.2.2_dev
+set H=R:\KSP_1.3.0_dev
 echo %H%
 
 
@@ -32,14 +32,14 @@ mkdir %d%
 d:
 cd D:\Users\jbb\github\PersistentDynamicPodNames
 
-copy /Y "%~dp0bin\Debug\PersistentDynamicPodNames.dll" "%H%\GameData\PersistentDynamicPodNames\Plugins"
+copy /Y "Source\bin\Debug\PersistentDynamicPodNames.dll" "%H%\GameData\PersistentDynamicPodNames\Plugins"
 
-copy /Y "%~dp0PDPN_Default_Templates.cfg" "%H%\GameData\PersistentDynamicPodNames\PluginData"
-copy /Y "%~dp0PDPN_Settings.cfg" "%H%\GameData\PersistentDynamicPodNames\PluginData"
-copy /Y "%~dp0PersistentDynamicPodNamesMM.cfg" "%H%\GameData\PersistentDynamicPodNames"
+copy /Y "PDPN_Default_Templates.cfg" "%H%\GameData\PersistentDynamicPodNames\PluginData"
+copy /Y "PDPN_Settings.cfg" "%H%\GameData\PersistentDynamicPodNames\PluginData"
+copy /Y "PersistentDynamicPodNamesMM.cfg" "%H%\GameData\PersistentDynamicPodNames"
 
 copy /Y Textures\* "%H%\GameData\PersistentDynamicPodNames\Textures"
-
+pause
 @echo off
 
 rem copy /Y "%~dp0PersistentDynamicPodNames.version" "%H%\GameData\PersistentDynamicPodNames"

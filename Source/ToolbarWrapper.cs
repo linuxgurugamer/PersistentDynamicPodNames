@@ -73,7 +73,7 @@ namespace PDPN {
 		/// </summary>
 		public static IToolbarManager Instance {
 			get {
-                return null;
+               // return null;
 				if ((toolbarAvailable != false) && (instance_ == null)) {
 					Type type = ToolbarTypes.getType("Toolbar.ToolbarManager");
 					if (type != null) {
