@@ -47,8 +47,9 @@ copy /Y "PersistentDynamicPodNames.version" "GameData\PersistentDynamicPodNames"
 
 copy /Y "License.txt" "GameData\PersistentDynamicPodNames"
 copy /Y "README.md" "GameData\PersistentDynamicPodNames"
+
 copy /Y ..\MiniAVC.dll  "GameData\PersistentDynamicPodNames"
-copy /Y ..\ModuleManager.2.8.0.dll  "GameData"
+copy /Y ..\ModuleManager.2.8.1.dll  "GameData"
 copy /Y AdditionalCreditsAndLicenses.txt  "GameData\PersistentDynamicPodNames"
 
 
