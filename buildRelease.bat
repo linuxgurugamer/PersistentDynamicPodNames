@@ -1,9 +1,5 @@
 ﻿
-rem @echo off
-
-cd
-pause
-
+@echo off
 
 set RELEASEDIR=d:\Users\jbb\release
 set ZIP="c:\Program Files\7-zip\7z.exe"

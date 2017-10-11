@@ -25,3 +25,8 @@
 
 0.1.7.3
 		Added checks for nullrefs when no template specified
+
+0.1.8
+		updated for KSp 1.3
+0.1.9
+		Updated for KSP 1.3.1
