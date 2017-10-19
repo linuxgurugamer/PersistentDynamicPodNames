@@ -46,4 +46,3 @@ rem copy /Y "%~dp0PersistentDynamicPodNames.version" "%H%\GameData\PersistentDyn
 rem copy /Y "%~dp0License.txt" "%H%\GameData\PersistentDynamicPodNames"
 rem copy /Y "%~dp0README.md" "%H%\GameData\PersistentDynamicPodNames"
 
-pause

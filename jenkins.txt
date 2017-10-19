@@ -1,0 +1,31 @@
+#
+# This file contains several types of information:
+#
+# 1     Mod install directory
+# 2     Project definitions
+# 3     Files to copy, source, dest
+# 4     Directory to copy, sourcedir, destdir
+# 5     Add ModuleManager to GameData
+
+# 1:GAMEDIR, VERSIONFILE
+1:PersistentDynamicPodNames, PersistentDynamicPodNames.version
+
+# 2:PROJNAME, PROJ, VERSIONFILE, PLUGINSFOLDER
+2:PersistentDynamicPodNames,Source/PersistentDynamicPodNames.csproj,PersistentDynamicPodNames.version,GameData/PersistentDynamicPodNames/Plugins
+
+# 3:SOURCEFILE, DESTDIR
+3:PersistentDynamicPodNames.version,GameData/PersistentDynamicPodNames
+3:PDPN_Default_Templates.cfg,GameData/PersistentDynamicPodNames/PluginData
+3:PDPN_Settings.cfg,GameData/PersistentDynamicPodNames/PluginData
+3:PersistentDynamicPodNamesMM.cfg,GameData/PersistentDynamicPodNames
+3:SampleTemplates.txt,GameData/PersistentDynamicPodNames
+3:License.txt,GameData/PersistentDynamicPodNames
+3:README.md,GameData/PersistentDynamicPodNames
+3:AdditionalCreditsAndLicenses.txt,GameData/PersistentDynamicPodNames
+
+# 4:SOURCDIR, DESTDIR
+4:Textures,GameData/PersistentDynamicPodNames/Textures
+
+# 5:ModuleManager
+5:ModuleManager
+

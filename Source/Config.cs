@@ -66,6 +66,7 @@ namespace PDPN
 		public List<KeyValuePair<string, Tuple<string, NameValueCollection, bool>>> templates = new List<KeyValuePair<string, Tuple<string, NameValueCollection, bool>>>();
 
         public static bool NewTemplatesAreActive = true;
+        public static string TemplateFile = "";
 
 
         public static Texture2D LoadPNG(string filePath) {
@@ -82,6 +83,12 @@ namespace PDPN
 		}
 
         static string SafeLoad(string value, bool oldvalue)
+        {
+            if (value == null)
+                return oldvalue.ToString();
+            return value;
+        }
+        static string SafeLoad(string value, string oldvalue)
         {
             if (value == null)
                 return oldvalue.ToString();
@@ -107,9 +114,15 @@ namespace PDPN
 
             if (configFile != null)
             {
+                ConfigNode node = configFile.GetNode("PersistentDynamicPodNames");
+                if (node != null)
+                {
+                    NewTemplatesAreActive = bool.Parse(SafeLoad(node.GetValue("NewTemplatesAreActive"), NewTemplatesAreActive));
+                    Log.Info("NewTemplatesAreActive: " + NewTemplatesAreActive.ToString());
 
-                NewTemplatesAreActive = bool.Parse(SafeLoad(configFile.GetValue("NewTemplatesAreActive"), NewTemplatesAreActive));
-                Log.Info("NewTemplatesAreActive: " + NewTemplatesAreActive.ToString());
+                    constants.PDPN_TEMPLATES_FILE = SafeLoad(node.GetValue("TemplateFile"), Constants.PDPN_BASE_FOLDER + "PluginData/PDPN_Templates.cfg");
+                    Log.Info("PDPN_TEMPLATES_FILE: " + constants.PDPN_TEMPLATES_FILE);
+                }
             }
         } 
 
